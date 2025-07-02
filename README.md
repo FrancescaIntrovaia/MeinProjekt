@@ -58,13 +58,27 @@ Anschließend wurde versucht, main.py zu committen. Da keine Änderungen vorlage
 git add main.py
 git commit -m "Hauptdatei aktualisiert"
 # → nothing to commit, working tree clean
-8. Merge des Feature-Branches in den Main-Branch und Push auf GitHub
-Wechsel auf den Main-Branch:
-git switch main
-Merge des Feature-Branches in Main:
-git merge feature
-In diesem Fall erfolgte der Merge als Fast-Forward, da keine Konflikte auftraten.
-Die Änderungen aus dem Feature-Branch (z.B. utils/database.py) wurden in Main integriert.
-Push der Änderungen auf das Remote-Repository:
-git push origin main
-Die Änderungen sind nun auch auf GitHub sichtbar.
+8. Merge-Konflikt:
+Ich habe zuerst den Branch `feature` mit `git switch feature` gewechselt.
+Dort habe ich die Datei `main.py` mit `notepad` geöffnet und Änderungen vorgenommen.
+Änderungen wurden mit `git add main.py` und `git commit -m "Änderung im feature-Branch"` festgeschrieben.
+Danach bin ich mit `git switch main` zurück zum `main`-Branch gewechselt.
+Auch im `main`-Branch habe ich `main.py` bearbeitet und die Änderungen committed.
+Beim Versuch, den `feature`-Branch in `main` zu mergen (`git merge feature`), trat ein Merge-Konflikt auf:Auto-merging main.py
+CONFLICT (content): Merge conflict in main.py
+Automatic merge failed; fix conflicts and then commit the result.
+Der Konflikt entstand, weil beide Branches die gleiche Datei `main.py` verändert hatten.
+9. Merge-Konflikt lösen und abschließen
+Öffnen der Datei `main.py` mit einem Texteditor (z. B. `notepad`).
+Git markiert die konfliktierenden Stellen mit speziellen Markierungen.
+Die gewünschten Änderungen werden ausgewählt und die Konflikt-Markierungen entfernt.
+Datei wird gespeichert.
+Datei mit `git add main.py` zum Commit vorgemerkt.
+Merge mit `git commit -m "Merge-Konflikt in main.py manuell gelöst"` abgeschlossen.
+10.Untracked Files hinzufügen:
+git status zeigt untracked Dateien (feature.py, main.txt).
+Versuch git add feature schlägt fehl, da kein solches File existiert.
+Stattdessen einzeln mit git add feature.py und git add main.txt hinzufügen.
+11. Änderungen pushen
+Mit git push werden alle lokalen Commits ins Remote-Repository übertragen.
+Ausgabe zeigt erfolgreiches Pushen und Hinweis auf neues Repository-URL.
